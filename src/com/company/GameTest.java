@@ -81,4 +81,45 @@ class GameTest {
         Assert.assertEquals(16 , game.finalScore);
     }
 
+    @Test
+    public void twoPlayersGameWithDraw(){
+        Game player1 = new Game();
+        Game player2 = new Game();
+        player1.roll(2);
+        player2.roll(2);
+        player1.roll(8);
+        player2.roll(8);
+        player1.roll(2);
+        player2.roll(2);
+        player1.roll(8);
+        player2.roll(8);
+
+        Assert.assertEquals(22 , player1.finalScore);
+        Assert.assertEquals(player1.finalScore , player2.finalScore);
+    }
+
+    @Test
+    public void twoPlayersGameWithPlayer1Win(){
+        Game player1 = new Game();
+        Game player2 = new Game();
+        for(int i=0; i<10; i++) {
+            player1.roll(4);
+            player2.roll(2);
+        }
+
+        Assert.assertTrue(player1.finalScore>player2.finalScore);
+    }
+
+    @Test
+    public void twoPlayersGameWithPlayer2Win(){
+        Game player1 = new Game();
+        Game player2 = new Game();
+        for(int i=0; i<10; i++) {
+            player1.roll(1);
+            player2.roll(2);
+        }
+
+        Assert.assertTrue(player1.finalScore<player2.finalScore);
+    }
+
 }
